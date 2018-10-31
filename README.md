@@ -1,0 +1,3 @@
+# GtkD Clock
+
+Simple clock

@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+gtkd-clock.so
+gtkd-clock.dylib
+gtkd-clock.dll
+gtkd-clock.a
+gtkd-clock.lib
+gtkd-clock-test-*
+*.exe
+*.o
+*.obj
+*.lst
+gtkd-clock
