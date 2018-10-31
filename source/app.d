@@ -12,31 +12,34 @@ string currentTime()
     return now.toISOExtString;
 }
 
-void buildUI(Application application)
+class MainWindow : ApplicationWindow
 {
-    auto window = new ApplicationWindow(application);
-    window.setTitle("GtkD Clock");
-    window.setBorderWidth(10);
-    window.setPosition(WindowPosition.CENTER);
-    window.setDefaultSize(260, 40);
+    this(Application application)
+    {
+        super(application);
+        setTitle("GtkD Clock");
 
-    window.addOnDelete((win, _) {
-            win.destroy();
-            return false;
-        });
+        setBorderWidth(10);
+        setPosition(WindowPosition.CENTER);
+        setDefaultSize(260, 40);
+        auto time = currentTime;
+        auto label = new Label("");
+        label.setText(time);
+        add(label);
 
-    auto time = currentTime;
-    auto label = new Label("");
-    label.setText(time);
-    window.add(label);
-    window.showAll();
+        addOnDelete((win, _) {
+                win.destroy();
+                return false;
+            });
+        showAll();
 
-    // labelの参照をキャプチャしたいのでdelegateを使う
-    new Timeout(() {
-            auto time = currentTime;
-            label.setText(time);
-            return true;
-        }, 1);
+        // labelの参照をキャプチャしたいのでdelegateを使う
+        new Timeout(() {
+                auto time = currentTime;
+                label.setText(time);
+                return true;
+            }, 1);
+    }
 }
 
 void main(string[] args)
@@ -44,7 +47,7 @@ void main(string[] args)
     auto application = new Application("com.github.gtkd-clock", GApplicationFlags.FLAGS_NONE);
 
     application.addOnStartup((GioApplication app) {
-            buildUI(application);
+            new MainWindow(application);
         });
 
     application.addOnActivate((GioApplication _) {});
