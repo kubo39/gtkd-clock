@@ -44,13 +44,9 @@ class MainWindow : ApplicationWindow
 
 void main(string[] args)
 {
-    auto application = new Application("com.github.gtkd-clock", GApplicationFlags.FLAGS_NONE);
-
-    application.addOnStartup((GioApplication app) {
+    auto application = new Application("com.github.kubo39.gtkd-clock", GApplicationFlags.FLAGS_NONE);
+    application.addOnActivate((GioApplication _) {
             new MainWindow(application);
         });
-
-    application.addOnActivate((GioApplication _) {});
-
     application.run(args);
 }
