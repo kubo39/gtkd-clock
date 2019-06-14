@@ -8,8 +8,7 @@ import std.datetime;
 
 string currentTime()
 {
-    auto now = Clock.currTime;
-    return now.toISOExtString;
+    return Clock.currTime.toSimpleString;
 }
 
 class MainWindow : ApplicationWindow
@@ -38,15 +37,15 @@ class MainWindow : ApplicationWindow
                 auto time = currentTime;
                 label.setText(time);
                 return true;
-            }, 1);
+            }, 1 /* second. */);
     }
 }
 
-void main(string[] args)
+int main(string[] args)
 {
     auto application = new Application("com.github.kubo39.gtkd-clock", GApplicationFlags.FLAGS_NONE);
     application.addOnActivate((GioApplication _) {
             new MainWindow(application);
         });
-    application.run(args);
+    return application.run(args);
 }
