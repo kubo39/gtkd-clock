@@ -22,8 +22,7 @@ class MainWindow : ApplicationWindow
         setPosition(WindowPosition.CENTER);
         setDefaultSize(260, 40);
         auto time = currentTime;
-        auto label = new Label("");
-        label.setText(time);
+        auto label = new Label(time);
         add(label);
 
         addOnDelete((win, _) {
