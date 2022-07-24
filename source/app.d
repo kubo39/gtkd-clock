@@ -36,7 +36,7 @@ class MainWindow : ApplicationWindow
                 auto time = currentTime;
                 label.setText(time);
                 return true;
-            }, 1 /* second. */);
+            }, 1.seconds);
     }
 }
 
